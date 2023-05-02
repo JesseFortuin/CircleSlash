@@ -18,3 +18,31 @@ The number of people. 1 through n standing in a circle.
 
 [output] an integer
 The index of the last person standing.
+
+-----------------------------
+solutions
+
+
+return (n-(1<<31-(32-Convert.ToString(n,2).Length)))*2+1;
+
+---------
+
+2 * (n - (int)Math.Pow(2, (int)Math.Floor(Math.Log(n, 2)))) + 1;
+
+---------
+
+            var index = 1;
+            var jumps = 1;
+
+            while (n > 1)
+            {
+                if ((n & 1) == 1)
+                {
+                    index += jumps * 2;
+                }
+
+                jumps *= 2;
+                n /= 2;
+            }
+
+            return index;
